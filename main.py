@@ -34,8 +34,7 @@ bot = Client(
       api_id=api_id,
       api_hash=api_hash, 
       bot_token=bot_token)
-auth_users = [
-    int(chat) for chat in os.environ.get("AUTH_USERS").split(",") if chat != '']
+auth_users =[1923922961,1191841001]
 
 @bot.on_message(filters.command(["start"])  & ~filters.edited)
 async def account_login(bot: Client, m: Message):
@@ -319,6 +318,11 @@ async def account_login(bot: Client, m: Message):
                 cmd = f'yt-dlp -f "{ytf}+bestaudio" --no-keep-video --remux-video mkv "{url}" -o "{name}.%(ext)s"'
             elif "m3u8" or "livestream" in url:
                 cmd = f'yt-dlp -f "{ytf}" --no-keep-video --remux-video mkv "{url}" -o "{name}.%(ext)s"'
+            elif '/master.mpd' in url:
+               id =  url.split("/")[-2]
+               url =  "https://psitoffers.store/testkey.php?vid=" + id + "&quality="+raw_text2   # link downlod command
+               cmd = f'yt-dlp -f "{ytf}" --no-keep-video --remux-video mkv "{url}" -o "{name}.%(ext)s"'
+    
             elif ytf == "0" or "unknown" in out:
                 cmd = f'yt-dlp -f "{ytf}" --no-keep-video --remux-video mkv "{url}" -o "{name}.%(ext)s"'
             elif ".pdf" in url:
