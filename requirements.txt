@@ -12,5 +12,4 @@ pycurl
 humanize
 cryptg
 mediainfo
-os
 subprocess
